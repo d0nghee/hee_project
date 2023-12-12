@@ -1,12 +1,12 @@
-package com.toyproject.deliveryking.rider;
+package com.toyproject.deliveryking.rider.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+@Controller("/api/v1")
 public class RiderController {
 
-    @GetMapping("/index")
+    @GetMapping("/login")
     public String index() {
         return "hi";
     }

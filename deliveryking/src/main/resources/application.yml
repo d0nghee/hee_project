@@ -4,3 +4,9 @@ spring:
         url: ENC(3bPVBfIMs5j8WlMfHErb2vilnbA3RmlknbM9jhXOCa)
         username: ENC(s79tYQv6vcIalxCdQzPHYQ==)
         password: ENC(YctrVPaSN4L6Y8a0EcjY9tOP/vTSti3E)
+
+jwt:
+    secret: hehehehhehehehhhhkhkhkehehehehehehehehasdfasdfsaeeeee
+    token-validity-in-seconds: 2592000  # 60 * 15 15분 -> 초
+    refresh-token-validity-in-seconds: 2592000 #1209600 # 60 * 60 * 24 * 30 30일 -> 초
+

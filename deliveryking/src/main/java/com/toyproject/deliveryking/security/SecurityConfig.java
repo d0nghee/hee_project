@@ -45,9 +45,7 @@ public class SecurityConfig {
 
 
                 .authorizeHttpRequests((registry) ->
-                        registry.requestMatchers("/api/v1/login").permitAll()
-                                .requestMatchers("/api/v1/signup/**").permitAll()
-                                .anyRequest().authenticated()
+                        registry.anyRequest().permitAll()
                 )
                 .apply(new JwtSecurityConfig(tokenProvider));
 

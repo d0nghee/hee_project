@@ -13,19 +13,21 @@ public class JasyptConfig {
     @Value("${jasypt.encryptor.password}")
     private String password; // 암호화 시 사용될 키 값
 
-    @Bean("jasyptStringEncryptor")
+    @Bean("jasyptEncryptorAES")
     public StringEncryptor stringEncryptor() {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
-        config.setPassword(password); // 암호화 키 값
-        config.setAlgorithm("PBEWithMD5AndDES"); // 암호 알고리즘
-        config.setKeyObtentionIterations("1000"); // PBE 해쉬 횟수
-        config.setPoolSize("1");
+
+        config.setPassword(password); // 암호화키
+        config.setAlgorithm("PBEWITHHMACSHA512ANDAES_256"); // 알고리즘
+        config.setKeyObtentionIterations("1000"); // 반복할 해싱 회수
+        config.setPoolSize("1"); // 인스턴스 pool
         config.setProviderName("SunJCE");
-        config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
-        config.setIvGeneratorClassName("org.jasypt.iv.NoIvGenerator");
-        config.setStringOutputType("base64");
+        config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator"); // salt 생성 클래스
+        config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
+        config.setStringOutputType("base64"); //인코딩 방식
         encryptor.setConfig(config);
+
         return encryptor;
     }
 }

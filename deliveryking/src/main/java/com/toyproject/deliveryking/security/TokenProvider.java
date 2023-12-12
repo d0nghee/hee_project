@@ -21,6 +21,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
+import static io.jsonwebtoken.io.Decoders.*;
+
 @Component
 public class TokenProvider implements InitializingBean {
 
@@ -33,14 +35,14 @@ public class TokenProvider implements InitializingBean {
 
     public TokenProvider(
             @Value("${jwt.secret}") String secret,
-            @Value("${jwt.token-validity-inseconds}") long tokenValidityInMilliseconds
+            @Value("${jwt.token-validity-in-seconds}") long tokenValidityInMilliseconds
     ) {
         this.secret = secret;
         this.tokenValidityInMilliseconds = tokenValidityInMilliseconds * 1000;
     }
     @Override
     public void afterPropertiesSet() throws Exception {
-        byte[] keyBytes = Decoders.BASE64.decode(secret);
+        byte[] keyBytes = BASE64.decode(secret);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
